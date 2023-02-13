@@ -15,17 +15,6 @@ class ApiMigrationServiceTest extends TestCase
 {
     use DatabaseMigrations;
 
-    private function mockApiCalls(): void
-    {
-        $stubsPath = storage_path() . '/test/stubs';
-
-        // comment this out to make real requests
-        Http::fake([
-            '/api/users?page=1' => Http::response(file_get_contents($stubsPath . '/reqres-users-page-1.json')),
-            '/api/users?page=2' => Http::response(file_get_contents($stubsPath . '/reqres-users-page-2.json')),
-        ]);
-    }
-
     public function testCanGetProviderUsers(): void
     {
         // mock the api calls
